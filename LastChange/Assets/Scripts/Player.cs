@@ -6,10 +6,11 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     [SerializeField] float speed = 1.0f;
+    Rigidbody2D rb;
     void Start()
     {
         animator = GetComponent<Animator>();
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -18,9 +19,10 @@ public class Player : MonoBehaviour
         
         float transitionH = Input.GetAxis("Horizontal");
         float transitionV = Input.GetAxis("Vertical");
-      //  animator.SetFloat("Horizontal", (Mathf.Abs(transitionH) + Mathf.Abs(transitionV)) * speed);
+      
         transitionH *= speed * Time.deltaTime;
         transitionV *= speed * Time.deltaTime;
+        rb.velocity = new Vector2(transitionH, transitionV);
         Debug.Log(transitionV);
         if (transitionV < 0f)
         {
