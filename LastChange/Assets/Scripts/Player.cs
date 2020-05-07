@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] float speed = 10.0f;
+    [SerializeField] float speed = 1.0f;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -15,21 +15,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetBool("isJump",true);
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            
-            animator.SetBool("isJump", false);
-        }
+        
         float transitionH = Input.GetAxis("Horizontal");
         float transitionV = Input.GetAxis("Vertical");
-        animator.SetFloat("Horizontal", (Mathf.Abs(transitionH) + Mathf.Abs(transitionV)) * speed);
-         transitionH = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-         transitionV = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        Debug.Log(Input.GetAxis("Horizontal") * speed + " " + animator.GetFloat("Horizontal"));
+      //  animator.SetFloat("Horizontal", (Mathf.Abs(transitionH) + Mathf.Abs(transitionV)) * speed);
+        transitionH *= speed * Time.deltaTime;
+        transitionV *= speed * Time.deltaTime;
+        Debug.Log(transitionV);
+        if (transitionV < 0f)
+        {
+           
+            animator.SetBool("FacedBack", false);
+            animator.SetBool("FacedFront", true);
+            animator.SetFloat("Speed",transitionV);
+        }
+        if (transitionV > 0f)
+        {
+            animator.SetBool("FacedFront", false);
+            animator.SetBool("FacedBack", true);
+            animator.SetFloat("Speed", transitionV);
+        }
+
         transform.Translate(transitionH ,transitionV, 0.0f);
        
     }
