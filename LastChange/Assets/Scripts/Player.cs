@@ -23,19 +23,40 @@ public class Player : MonoBehaviour
         transitionH *= speed * Time.deltaTime;
         transitionV *= speed * Time.deltaTime;
         rb.velocity = new Vector2(transitionH, transitionV);
-        Debug.Log(transitionV);
+        
         if (transitionV < 0f)
         {
            
             animator.SetBool("FacedBack", false);
+            animator.SetBool("FacedLeft", false);
+            animator.SetBool("FacedRight", false);
             animator.SetBool("FacedFront", true);
-            animator.SetFloat("Speed",transitionV);
+            animator.SetFloat("SpeedV",transitionV);
         }
         if (transitionV > 0f)
         {
             animator.SetBool("FacedFront", false);
+            animator.SetBool("FacedLeft", false);
+            animator.SetBool("FacedRight", false);
             animator.SetBool("FacedBack", true);
-            animator.SetFloat("Speed", transitionV);
+            animator.SetFloat("SpeedV", transitionV);
+        }
+        if (transitionH < 0f)
+        {
+
+            animator.SetBool("FacedBack", false);
+            animator.SetBool("FacedRight", false);
+            animator.SetBool("FacedFront", false);
+            animator.SetBool("FacedLeft", true);
+            animator.SetFloat("SpeedH", transitionH);
+        }
+        if (transitionH > 0f)
+        {
+            animator.SetBool("FacedFront", false);
+            animator.SetBool("FacedLeft", false);
+            animator.SetBool("FacedBack", false);
+            animator.SetBool("FacedRight", true);
+            animator.SetFloat("SpeedH", transitionH);
         }
 
         transform.Translate(transitionH ,transitionV, 0.0f);
