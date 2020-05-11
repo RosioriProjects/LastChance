@@ -47,8 +47,10 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        
         if (collision.gameObject.name == "Chest")
         {
+            Debug.Log("Sunt in trigger");
             if (Input.GetKeyDown(KeyCode.C))
             {
                 if (deschis)
