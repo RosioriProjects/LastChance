@@ -6,18 +6,26 @@ public class Player : MonoBehaviour
 {
     Animator animator;
     [SerializeField] float speed = 1.0f;
+   // [SerializeField] UI_Inventory uI_Inventory;
     Rigidbody2D rb;
     bool deschis = false;
     public int maxHealth = 100;
     public int Damage = 5;
     int currentHealth;
-    
-
+  //  private Inventory inventory;
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
         currentHealth = maxHealth;
+
+      //  inventory = new Inventory();
+     //   uI_Inventory.SetInventory(inventory);
+
+      //  ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
+       // ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
+     
     }
 
     // Update is called once per frame
@@ -110,6 +118,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+       // ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
+        
+      //  if (itemWorld != null)
+        {
+            //Touching item
+           // inventory.AddItem(itemWorld.GetItem());
+           
+          //  itemWorld.DestroySelf();
+
+        }
+    }
 
 
 }

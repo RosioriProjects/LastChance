@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    private bool isOpen;
     Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        isOpen = false;
+        
         animator = GetComponent<Animator>();
     }
 

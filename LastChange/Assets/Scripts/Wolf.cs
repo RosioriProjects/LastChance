@@ -6,8 +6,10 @@ using UnityEngine;
 public class Wolf : MonoBehaviour
 {
     // Start is called before the first frame update
+
     [SerializeField] GameObject particle;
     [SerializeField] float moveSpeed;
+   // [SerializeField] float moveSpeed = 50f;
     private Player target = null ;
     public bool following;
     Animator animator;
