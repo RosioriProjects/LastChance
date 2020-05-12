@@ -6,16 +6,23 @@ using UnityEngine;
 public class Wolf : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] GameObject particle;
     [SerializeField] float moveSpeed;
     private Player target = null ;
-    private bool following;
+    public bool following;
     Animator animator;
+    public int maxHealth=100;
+    public int damage = 15;
+    int currentHealth;
     void Start()
     {
         following = false;
         animator = GetComponent<Animator>();
-    }
+        currentHealth = maxHealth;
+        
 
+    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -48,8 +55,32 @@ public class Wolf : MonoBehaviour
             }
 
         }
+
+       
+        
     }
-      
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            
+            Die();
+        }
+    }
+     
+    void Die()
+    {
+        Debug.Log("DEAD!");
+       
+      //  particle.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Instantiate(particle, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(particle);
+        Destroy(this.gameObject);
+    }
+
     private void setAnimator(String directie)
     {
         if (directie == "back")
@@ -84,7 +115,7 @@ public class Wolf : MonoBehaviour
 
 
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
        
         
@@ -93,8 +124,23 @@ public class Wolf : MonoBehaviour
           
             following = true;
             target = collision.gameObject.GetComponent<Player>();
+
+           
+        }
+        
+     
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player")
+        {
+            following = false;
         }
     }
 
-   
-}
+
+
+
+
+
+    }

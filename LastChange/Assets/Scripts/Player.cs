@@ -8,10 +8,16 @@ public class Player : MonoBehaviour
     [SerializeField] float speed = 1.0f;
     Rigidbody2D rb;
     bool deschis = false;
+    public int maxHealth = 100;
+    public int Damage = 5;
+    int currentHealth;
+    
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -64,6 +70,22 @@ public class Player : MonoBehaviour
        
 
 
+    }
+
+    public void takeDamage(int damage)
+    {
+        currentHealth -= damage;
+        Debug.Log("TOOK DAMAG");
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Debug.Log("YOU DIED");
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
