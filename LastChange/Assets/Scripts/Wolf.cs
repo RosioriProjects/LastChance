@@ -22,11 +22,7 @@ public class Wolf : MonoBehaviour
         if (following)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
-            Vector3 vectorToTarget = target.transform.position - transform.position;
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-            Quaternion qt = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, qt, Time.deltaTime);
-
+            
             float transitionH = transform.position.x;
             float transitionV = transform.position.y;
 
@@ -90,6 +86,7 @@ public class Wolf : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
+       
         
         if (collision.gameObject.name == "Player")
         {

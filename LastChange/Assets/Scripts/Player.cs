@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         
         if (collision.gameObject.name == "Chest")
         {
-            Debug.Log("Sunt in trigger");
+            
             if (Input.GetKeyDown(KeyCode.C))
             {
                 if (deschis)
