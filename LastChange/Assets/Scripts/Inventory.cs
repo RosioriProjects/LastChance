@@ -16,22 +16,29 @@ public class Inventory
 
     public void AddItem(Item item)
     {
-        //if (item.IsStackable())
-        //{
-        //    foreach(Item inventoryItem in itemList)
-        //    { bool itemAlreadyInInventory = false;
-        //        if(inventoryItem.GetTitle() == item.GetTitle(){
-        //            inventoryItem.amount += item.amount;
-        //            itemAlreadyInInventory = true;
-         //       }
+        if (item.IsStackable())
+        {
+            bool itemAlreadyInInventory = false;
+            foreach (Item inventoryItem in itemList)
+            {
+                
+                if(inventoryItem.GetTitle() == item.GetTitle()){
+                    inventoryItem.amount += item.amount;
+                    itemAlreadyInInventory = true;
+                    
+                }
 
-         //   }
+            }
+            if (!itemAlreadyInInventory)
+            {
+                itemList.Add(item);
+            }
 
-       // }
-       // else
-       // {
+        }
+        else
+        {
             itemList.Add(item);
-       // }
+        }
        OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
