@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject particle;
     [SerializeField] float speed = 1.0f;
     [SerializeField] UI_Inventory uI_Inventory;
+    [SerializeField] KeyCode[] toggleInventoryKeys;
+    [SerializeField] GameObject inventoryPage;
     Rigidbody2D rb;
     bool deschis = false;
     public int maxHealth = 100;
@@ -28,13 +30,6 @@ public class Player : MonoBehaviour
 
        ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
        ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
-     
-
-      inventory = new Inventory();
-      uI_Inventory.SetInventory(inventory);
-
-       ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 1));
-       ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 1));
         ItemWorld.SpawnItemWorld(new Vector3(-100, 10, -1), new Item(4, "wood", "n", 0, 0, 12, 0, 20, 0, 0, 2));
 
 
@@ -88,7 +83,14 @@ public class Player : MonoBehaviour
 
         transform.Translate(transitionH ,transitionV, 0.0f);
        
-
+        for(int i = 0;i < toggleInventoryKeys.Length; i++)
+        {
+            if (Input.GetKeyDown(toggleInventoryKeys[i]))
+            {
+                inventoryPage.SetActive(!inventoryPage.activeSelf);
+                break;
+            }
+        }
 
     }
 
@@ -116,17 +118,18 @@ public class Player : MonoBehaviour
         
         if (collision.gameObject.name == "Chest")
         {
+            Chest chest = FindObjectOfType<Chest>();
             
             if (Input.GetKeyDown(KeyCode.C))
             {
                 if (deschis)
                 {
-                    FindObjectOfType<Chest>().CloseChest();
+                    chest.CloseChest();
                     deschis = false;
                 }
                 else
                 {
-                    FindObjectOfType<Chest>().OpenChest();
+                    chest.OpenChest();
                     deschis = true;
                 }
             }

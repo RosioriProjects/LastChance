@@ -142,6 +142,8 @@ MonoBehaviour:
   particle: {fileID: 0}
   speed: 100
   uI_Inventory: {fileID: 0}
+  toggleInventoryKeys: 690000006b000000
+  inventoryPage: {fileID: 0}
   maxHealth: 100
   Damage: 10
 --- !u!95 &38722534872949925

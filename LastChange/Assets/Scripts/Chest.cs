@@ -5,11 +5,16 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
     Animator animator;
+    [SerializeField] UI_Inventory uI_Inventory;
+    [SerializeField] GameObject inventoryPage;
+    private Inventory inventory;
     // Start is called before the first frame update
     void Start()
     {
+        inventory = new Inventory();
         
         animator = GetComponent<Animator>();
+        uI_Inventory.SetInventory(inventory);
     }
 
     // Update is called once per frame
@@ -21,12 +26,15 @@ public class Chest : MonoBehaviour
 
     public void OpenChest()
     {
+        inventoryPage.SetActive(!inventoryPage.activeSelf);
         animator.SetBool("Open", true);
-        Debug.Log("Am deschis Chest-ul");
+        
+
     }
     public void CloseChest()
     {
         animator.SetBool("Open", false);
-        Debug.Log("Am inchis Chest-ul");
+        inventoryPage.SetActive(!inventoryPage.activeSelf);
+
     }
 }
