@@ -21,12 +21,22 @@ public class Player : MonoBehaviour
 
         currentHealth = maxHealth;
 
+
        inventory = new Inventory();
        uI_Inventory.SetInventory(inventory);
 
        ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
        ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
      
+
+      inventory = new Inventory();
+      uI_Inventory.SetInventory(inventory);
+
+       ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 1));
+       ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 1));
+        ItemWorld.SpawnItemWorld(new Vector3(-100, 10, -1), new Item(4, "wood", "n", 0, 0, 12, 0, 20, 0, 0, 2));
+
+
     }
 
     // Update is called once per frame
@@ -128,10 +138,15 @@ public class Player : MonoBehaviour
         
         if (itemWorld != null)
         {
+
           //  Touching item
             inventory.AddItem(itemWorld.GetItem());
-           
+          
            itemWorld.DestroySelf();
+         
+            inventory.AddItem(itemWorld.GetItem());
+          
+            itemWorld.DestroySelf();
 
         }
     }
