@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour
         Instantiate(particle, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(particle);
         Destroy(this.gameObject);
+        SceneManager.LoadScene("GameOverScene");
     }
 
     private void OnTriggerStay2D(Collider2D collision)
