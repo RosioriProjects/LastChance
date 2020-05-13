@@ -139,10 +139,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b6ccab489a91c4483f38413b26b9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 0}
   speed: 100
   uI_Inventory: {fileID: 0}
   maxHealth: 100
-  Damage: 20
+  Damage: 10
 --- !u!95 &38722534872949925
 Animator:
   serializedVersion: 3
@@ -175,14 +176,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 38722534872949925}
+  startTimeBtwAttack: 0.5
   attackPointRight: {fileID: 1705766892918634595}
   attackPointLeft: {fileID: 1800942837690377506}
   attackPointFront: {fileID: 7280415869017621296}
   attackPointBack: {fileID: 4418614103346235928}
-  attackRange: 0.5
+  attackRange: 16
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1
 --- !u!1 &344178745524479076
 GameObject:
   m_ObjectHideFlags: 0

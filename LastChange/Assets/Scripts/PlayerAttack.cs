@@ -64,7 +64,13 @@ public class PlayerAttack : MonoBehaviour
                 enemy.GetComponent<Wolf>().takeDamage(this.GetComponent<Player>().Damage);
                 
             }
-            
+            if (enemy.tag == "Tree")
+            {
+                Debug.Log("We hit " + enemy.name + " for " + this.GetComponent<Player>().Damage + " damage!");
+                enemy.GetComponent<BigTree>().takeDamage(this.GetComponent<Player>().Damage);
+            }
+
+
         }
         
     }
