@@ -5,14 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Animator animator;
+    [SerializeField] GameObject particle;
     [SerializeField] float speed = 1.0f;
-   // [SerializeField] UI_Inventory uI_Inventory;
+    [SerializeField] UI_Inventory uI_Inventory;
     Rigidbody2D rb;
     bool deschis = false;
     public int maxHealth = 100;
     public int Damage = 5;
     int currentHealth;
-  //  private Inventory inventory;
+    private Inventory inventory;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -20,11 +21,11 @@ public class Player : MonoBehaviour
 
         currentHealth = maxHealth;
 
-      //  inventory = new Inventory();
-     //   uI_Inventory.SetInventory(inventory);
+       inventory = new Inventory();
+       uI_Inventory.SetInventory(inventory);
 
-      //  ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
-       // ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
+       ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
+       ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
      
     }
 
@@ -93,6 +94,8 @@ public class Player : MonoBehaviour
     void Die()
     {
         Debug.Log("YOU DIED");
+        Instantiate(particle, gameObject.transform.position, gameObject.transform.rotation);
+        Destroy(particle);
         Destroy(this.gameObject);
     }
 
@@ -121,14 +124,14 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-       // ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
+       ItemWorld itemWorld = collision.GetComponent<ItemWorld>();
         
-      //  if (itemWorld != null)
+        if (itemWorld != null)
         {
-            //Touching item
-           // inventory.AddItem(itemWorld.GetItem());
+          //  Touching item
+            inventory.AddItem(itemWorld.GetItem());
            
-          //  itemWorld.DestroySelf();
+           itemWorld.DestroySelf();
 
         }
     }

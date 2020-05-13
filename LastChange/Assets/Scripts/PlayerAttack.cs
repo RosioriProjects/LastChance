@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public Animator animator;
-
+    float timeBtwAttack;
+    public float startTimeBtwAttack;
     public Transform attackPointRight;
     public Transform attackPointLeft;
     public Transform attackPointFront;
@@ -23,10 +24,21 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Attack();
-        }
+            if (timeBtwAttack <= 0)
+            {
+                Attack();
+                timeBtwAttack = startTimeBtwAttack;
+            }
+
+        }   
+            timeBtwAttack -= Time.deltaTime;
+        
     }
 
     void Attack()
