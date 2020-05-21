@@ -48,7 +48,7 @@ public class LoginData : MonoBehaviour
         //And we start a new co routine in Unity and wait for the response.
         StartCoroutine(WaitForRequest(www));
     }
-    //Wait for the www Request
+    
     IEnumerator WaitForRequest(WWW www)
     {
         yield return www;
@@ -64,8 +64,6 @@ public class LoginData : MonoBehaviour
             Debug.Log(www.error);
         }
     }
-
-   
 
 
 }
