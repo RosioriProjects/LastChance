@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.IO;
 
 public class LoginData : MonoBehaviour
 {
@@ -12,49 +13,6 @@ public class LoginData : MonoBehaviour
     public TMP_InputField password;
     string user;
     string pass;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    /*
-     * WWWForm form = new WWWForm();
-        form.AddField("username", user);
-        form.AddField("password", pass);
-        */
-    /* IEnumerator Upload()
-     {
-         user = username.text;
-         pass = password.text;
-         LoginRequest form = new LoginRequest();
-         form.setUsername(user);
-         form.setPassword(pass);
-         Debug.Log(user + pass);
-         string jsonStringTrial = JsonUtility.ToJson(form);
-         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:8080/user/login", form.toString()))
-         {
-             www.SetRequestHeader("Content-Type", "application/json");
-             yield return www.SendWebRequest();
-
-             if (www.isNetworkError || www.isHttpError)
-             {
-                 Debug.Log(www.error);
-             }
-             else
-             {
-                 Debug.Log("Form upload complete!");
-             }
-         }
-     }
-     */
-
 
 
     public void doPost()
@@ -98,6 +56,8 @@ public class LoginData : MonoBehaviour
         {
             //Print server response
             Debug.Log(www.text);
+            File.WriteAllText(Application.dataPath + "/saveFile.json" , www.text);
+
         }
         else
         {
