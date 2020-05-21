@@ -33,7 +33,7 @@ public class LoginData : MonoBehaviour
         form.AddField("password", pass);
         Debug.Log(user + pass);
 
-        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:8080/user/login", form))
+        using (UnityWebRequest www = UnityWebRequest.Post("http://localhost:8080/user/login.json", form))
         {
             yield return www.SendWebRequest();
 
