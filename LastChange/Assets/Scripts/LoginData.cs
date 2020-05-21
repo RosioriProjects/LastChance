@@ -5,12 +5,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class LoginData : MonoBehaviour
 {
 
     public TMP_InputField username;
     public TMP_InputField password;
+    public TextMeshProUGUI auxText;
     string user;
     string pass;
 
@@ -56,12 +58,16 @@ public class LoginData : MonoBehaviour
         {
             //Print server response
             Debug.Log(www.text);
+            File.WriteAllText(Application.dataPath + "/saveFile.json", www.text);
             SceneManager.LoadScene("Game");
         }
         else
         {
             //Something goes wrong, print the error response
             Debug.Log(www.error);
+            auxText.color = new Color32(255,0,0,255);
+            auxText.text = "Username or password not correct!";
+
         }
     }
 

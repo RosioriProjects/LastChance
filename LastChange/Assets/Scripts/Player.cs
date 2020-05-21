@@ -1,10 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+public class PlayerDatabase {
+    public int id_user;
+    public string username;
+    public string password;
+    public string nickname;
+    public int hp;
+    public int armor;
+    public int speed;
+    public int attack_value;
+    public int hunger;
+    public int sickness;
+    public int longitude;
+    public int latitude;
+
+
+}
+
+
 public class Player : MonoBehaviour
 {
+
+    public int id_user;
+    public string nickname;
+    public int sickness;
+    public int hunger;
+    public int armor;
     Animator animator;
     [SerializeField] GameObject particle;
     [SerializeField] float speed = 1.0f;
@@ -19,6 +45,10 @@ public class Player : MonoBehaviour
     private Inventory inventory;
     void Start()
     {
+
+        string json = File.ReadAllText(Application.dataPath + "/saveFile.json");
+        PlayerDatabase loadedPlayer = JsonUtility.FromJson<PlayerDatabase>(json);
+        this.gameObject.transform.position =new Vector3 (loadedPlayer.longitude,loadedPlayer.latitude,-2);
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
