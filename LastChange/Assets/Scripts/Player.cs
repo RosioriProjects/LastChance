@@ -26,6 +26,7 @@ public class PlayerDatabase {
 public class Player : MonoBehaviour
 {
 
+    public string username;
     public int id_user;
     public string nickname;
     public int sickness;
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
 
         string json = File.ReadAllText(Application.dataPath + "/saveFile.json");
         PlayerDatabase loadedPlayer = JsonUtility.FromJson<PlayerDatabase>(json);
+        this.username = loadedPlayer.username;
         this.gameObject.transform.position =new Vector3 (loadedPlayer.longitude,loadedPlayer.latitude,-2);
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
