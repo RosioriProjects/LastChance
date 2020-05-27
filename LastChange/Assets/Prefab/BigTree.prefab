@@ -162,4 +162,15 @@ MonoBehaviour:
   particle: {fileID: 0}
   Hit: {fileID: 21300000, guid: 08d4d3ecc7cc26f4394441e282708364, type: 3}
   HitBad: {fileID: 21300000, guid: 30b58a966aa32e74fa62e0b93b15fb1d, type: 3}
+  id_item: 5
+  title: wood
+  equippable_consummable: n
+  hp_modifier: 0
+  armor_modifier: 0
+  hunger_modifier: 0
+  weather_modifier: 12
+  attack_modifier: 0
+  drop_modifier: 0
+  speed_modifier: 0
+  amount: 2
   maxHealth: 100

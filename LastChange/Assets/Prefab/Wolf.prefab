@@ -220,3 +220,14 @@ MonoBehaviour:
   following: 0
   maxHealth: 50
   damage: 15
+  id_item: 10
+  title: meat
+  equippable_consummable: c
+  hp_modifier: 22
+  armor_modifier: 0
+  hunger_modifier: 10
+  weather_modifier: 0
+  attack_modifier: 0
+  drop_modifier: 0
+  speed_modifier: 0
+  amount: 2

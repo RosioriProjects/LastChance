@@ -16,6 +16,19 @@ public class Wolf : MonoBehaviour
     public int maxHealth=100;
     public int damage = 15;
     int currentHealth;
+
+    [SerializeField] public int id_item;
+    [SerializeField] public string title;
+    [SerializeField] public string equippable_consummable;
+    [SerializeField] public int hp_modifier;
+    [SerializeField] public int armor_modifier;
+    [SerializeField] public int hunger_modifier;
+    [SerializeField] public int weather_modifier;
+    [SerializeField] public int attack_modifier;
+    [SerializeField] public int drop_modifier;
+    [SerializeField] public int speed_modifier;
+
+    [SerializeField] public int amount;
     void Start()
     {
         following = false;
@@ -79,6 +92,8 @@ public class Wolf : MonoBehaviour
        
       //  particle.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Instantiate(particle, gameObject.transform.position, gameObject.transform.rotation);
+        ItemWorld.SpawnItemWorld(transform.position, new Item(id_item, title, equippable_consummable, hp_modifier, armor_modifier, hunger_modifier, weather_modifier, attack_modifier, drop_modifier, speed_modifier, amount));
+
         Destroy(particle);
         Destroy(this.gameObject);
     }
