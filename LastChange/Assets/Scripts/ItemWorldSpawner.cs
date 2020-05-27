@@ -19,7 +19,7 @@ public class ItemWorldSpawner : MonoBehaviour
     private void Start()
     {
         ItemWorld.SpawnItemWorld(transform.position, new Item(id_item,title,equippable_consummable,hp_modifier,armor_modifier,hunger_modifier,weather_modifier,attack_modifier,drop_modifier,speed_modifier,amount));
-        //ItemWorld.SpawnItemWorld(new Vector3(-12, 21, -1), new Item(2, "wood", "n", 0, 0, 0, 0, 20, 0, 0, 1));
+        ItemWorld.SpawnItemWorld(new Vector3(-12, 21, -1), new Item(2, "wood", "n", 0, 0, 0, 0, 20, 0, 0, 1));
         Destroy(gameObject);
     }
 }

@@ -17,6 +17,7 @@ public class LoginData : MonoBehaviour
     string pass;
 
     Dictionary<string, string> parameters = new Dictionary<string, string>();
+
     public void doPost()
     {
         user = username.text;
@@ -58,8 +59,9 @@ public class LoginData : MonoBehaviour
         {
             //Print server response
             Debug.Log(www.text);
-            File.WriteAllText(Application.dataPath + "/saveFile.json", www.text);
+            File.WriteAllText(Application.dataPath + "/saveFile.json" , www.text);
             SceneManager.LoadScene("Game");
+
         }
         else
         {
