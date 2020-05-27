@@ -843,6 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   username: {fileID: 4163271971401544410}
   password: {fileID: 6899757004651634284}
+  auxText: {fileID: 8204368594985924684}
 --- !u!1 &6423331546659268171
 GameObject:
   m_ObjectHideFlags: 0
