@@ -15,11 +15,6 @@ public class PlayerAttack : MonoBehaviour
     public LayerMask enemyLayers;
      
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -60,14 +55,12 @@ public class PlayerAttack : MonoBehaviour
         {
             if (enemy.tag == "Enemy")
             {
-                Debug.Log("We hit " + enemy.name +" for "+ this.GetComponent<Player>().Damage + " damage!");
                 enemy.GetComponent<Wolf>().takeDamage(this.GetComponent<Player>().Damage);
                 
             }
             if (enemy.tag == "Tree")
             {
-                Debug.Log("We hit " + enemy.name + " for " + this.GetComponent<Player>().Damage + " damage!");
-                enemy.GetComponent<BigTree>().takeDamage(this.GetComponent<Player>().Damage);
+               enemy.GetComponent<BigTree>().takeDamage(this.GetComponent<Player>().Damage);
             }
 
 

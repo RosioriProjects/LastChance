@@ -60,10 +60,6 @@ public class Player : MonoBehaviour
        inventory = new Inventory();
        uI_Inventory.SetInventory(inventory);
 
-      // ItemWorld.SpawnItemWorld(new Vector3(-148, 120,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
-       //ItemWorld.SpawnItemWorld(new Vector3(-20, 10,-1), new Item(4,"meat", "c", 0, 0, 12, 0, 20, 0, 0, 3));
-       // ItemWorld.SpawnItemWorld(new Vector3(-100, 10, -1), new Item(4, "wood", "n", 0, 0, 12, 0, 20, 0, 0, 2));
-
 
     }
 

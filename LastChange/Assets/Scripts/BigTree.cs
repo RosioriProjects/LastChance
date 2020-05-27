@@ -22,13 +22,15 @@ public class BigTree : MonoBehaviour
     [SerializeField] public int speed_modifier;
 
     [SerializeField] public int amount;
+    GameObject poof;
     public int maxHealth;
     int currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;    
+        currentHealth = maxHealth;
+         poof = particle;
     }
 
 
@@ -59,7 +61,7 @@ public class BigTree : MonoBehaviour
     {
         Instantiate(particle, gameObject.transform.position, gameObject.transform.rotation);
         ItemWorld.SpawnItemWorld(transform.position, new Item(id_item, title, equippable_consummable, hp_modifier, armor_modifier, hunger_modifier, weather_modifier, attack_modifier, drop_modifier, speed_modifier, amount));
-        Destroy(particle);
-        Destroy(this.gameObject);
+        Destroy(poof);
+        Destroy(gameObject);
     }
 }

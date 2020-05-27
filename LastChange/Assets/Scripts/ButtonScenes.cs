@@ -25,4 +25,9 @@ public class ButtonScenes : MonoBehaviour
     {
         SceneManager.LoadScene("Login");
     }
+
+    public void RegisterScreen()
+    {
+        SceneManager.LoadScene("Register");
+    }
 }
