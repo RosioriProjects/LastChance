@@ -7,6 +7,7 @@ public class Chest : MonoBehaviour
     Animator animator;
     [SerializeField] UI_Inventory uI_Inventory;
     [SerializeField] GameObject inventoryPage;
+    [SerializeField] UI_Inventory playerInv;
     private Inventory inventory;
     // Start is called before the first frame update
     void Start()
@@ -17,10 +18,9 @@ public class Chest : MonoBehaviour
         uI_Inventory.SetInventory(inventory);
     }
 
-    // Update is called once per frame
-    void Update()
+    public Inventory GetInventory()
     {
-        
+        return this.inventory;
     }
 
 
@@ -36,5 +36,12 @@ public class Chest : MonoBehaviour
         animator.SetBool("Open", false);
         inventoryPage.SetActive(!inventoryPage.activeSelf);
 
+    }
+
+    public void Transfer()
+    {
+       // Debug.Log(inventory.GetItemList());
+        uI_Inventory.transfer(playerInv);
+        
     }
 }

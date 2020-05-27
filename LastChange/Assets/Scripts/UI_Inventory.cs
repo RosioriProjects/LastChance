@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class UI_Inventory : MonoBehaviour
 {
+    
     private Inventory inventory;
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
@@ -13,11 +14,35 @@ public class UI_Inventory : MonoBehaviour
         itemSlotContainer = transform.Find("itemSlotContainer");
         itemSlotTemplate = itemSlotContainer.Find("itemSlotTemplate");
     }
+
+    public void transfer(UI_Inventory toTransfer)
+    {
+        this.AddInventory(toTransfer.GetInventory());
+        this.RefreshInventoryItems();
+        toTransfer.GetInventory().ClearItemList();
+        toTransfer.RefreshInventoryItems();
+        
+    }
+
+    public void AddInventory(Inventory inventoryToAdd)
+    {
+        foreach (Item item in inventoryToAdd.GetItemList())
+        {
+            this.inventory.AddItem(item);
+        }
+        this.inventory.OnItemListChanged += Inventory_OnItemListChanged;
+        RefreshInventoryItems();
+    }
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
         this.inventory.OnItemListChanged += Inventory_OnItemListChanged;
         RefreshInventoryItems();
+    }
+
+    public Inventory GetInventory()
+    {
+        return this.inventory;
     }
 
     private void Inventory_OnItemListChanged(object sender , System.EventArgs e)
@@ -40,8 +65,9 @@ public class UI_Inventory : MonoBehaviour
         {
             RectTransform itemSlotRectTransform = Instantiate(itemSlotTemplate, itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
-            
-            itemSlotRectTransform.anchoredPosition = new Vector2((itemSlotTemplate.position.x) + x * itemSlotCellSize + 3*itemSlotCellSize + itemSlotCellSize/4,(itemSlotTemplate.position.y) - y * itemSlotCellSize);
+
+            itemSlotRectTransform.anchoredPosition = new Vector2((itemSlotTemplate.position.x) + x * itemSlotCellSize + 3 * itemSlotCellSize + itemSlotCellSize / 4, (itemSlotTemplate.position.y) - y * itemSlotCellSize);
+           
             Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
             image.sprite = item.GetSprite();
             TextMeshProUGUI uiText = itemSlotRectTransform.Find("amountText").GetComponent<TextMeshProUGUI>();

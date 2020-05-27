@@ -14,6 +14,11 @@ public class Inventory
         
     }
 
+    public void ClearItemList()
+    {
+        itemList.Clear();
+    }
+
     public void AddItem(Item item)
     {
         if (item.IsStackable())
@@ -46,6 +51,21 @@ public class Inventory
     {
         return itemList;
     }
+
+    public void AddItemList(List<Item> toCopy)
+    {
+
+        if (toCopy.Count != 0)
+        {
+            foreach (Item inventoryItem in toCopy)
+            {
+
+                itemList.Add(inventoryItem);
+            }
+        }
+    }
+
+    
 
     
 }
